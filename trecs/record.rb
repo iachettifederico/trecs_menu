@@ -1,7 +1,7 @@
 require "trecs"
 require "trecs/writers/json_writer"
 require "trecs/recorder"
-require "trecs/recording_strategies/config_strategy"
+require "trecs/strategies/config_strategy"
 class Record
   def self.menu(*args)
     return "@prompt/Enter file name" if args.empty?
@@ -44,7 +44,7 @@ class Record
       opts = opts.each_with_object({}) { |opt, h|
         h[opt.first.to_sym] = opt.last
       }
-      strategy_file = "trecs/recording_strategies/#{opts[:strategy]}_strategy"
+      strategy_file = "trecs/strategies/#{opts[:strategy]}_strategy"
       require strategy_file
       strategy_class_name = [
         "TRecs::",
